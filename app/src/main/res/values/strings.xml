@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">NBA</string>
+    <string name="welcome_message">Welcome to NBA Stats! Explore player statistics, keep track of your favorite players, and dive deep into season stats</string>
+</resources>
