@@ -21,13 +21,14 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
-fun PreviewMainScreen() {
+fun DefaultPreview() {
     NBATheme {
         Home()
     }
 }
+
 
 
 
