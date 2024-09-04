@@ -17,7 +17,9 @@ import com.example.nba.navigation.BottomBar
 import com.example.nba.navigation.NavHostComposable
 import com.example.nba.navigation.TopBar
 import com.example.nba.ui.theme.NBATheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,15 +51,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    NBATheme {
-        Home()
-    }
-}
-
 
 
 

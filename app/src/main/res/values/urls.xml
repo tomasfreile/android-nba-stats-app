@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="base_url">http://b8c40s8.143.198.70.30.sslip.io/api/</string>
+    <string name="bos_logo">https://cdn.nba.com/logos/nba/1610612738/global/L/logo.svg</string>
+    <string name="bkn_logo">https://cdn.nba.com/logos/nba/1610612751/global/L/logo.svg</string>
+    <string name="nyc_logo">https://cdn.nba.com/logos/nba/1610612752/global/L/logo.svg</string>
+    <string name="phi_logo">https://cdn.nba.com/logos/nba/1610612755/global/L/logo.svg</string>
+    <string name="tor_logo">https://cdn.nba.com/logos/nba/1610612761/global/L/logo.svg</string>
+    <string name="chi_logo">https://cdn.nba.com/logos/nba/1610612741/global/L/logo.svg</string>
+    <string name="cle_logo">https://cdn.nba.com/logos/nba/1610612739/global/L/logo.svg</string>
+    <string name="det_logo">https://cdn.nba.com/logos/nba/1610612765/global/L/logo.svg</string>
+    <string name="ind_logo">https://cdn.nba.com/logos/nba/1610612754/global/L/logo.svg</string>
+    <string name="mil_logo">https://cdn.nba.com/logos/nba/1610612749/global/L/logo.svg</string>
+    <string name="mia_logo">https://cdn.nba.com/logos/nba/1610612748/global/L/logo.svg</string>
+    <string name="orl_logo">https://cdn.nba.com/logos/nba/1610612753/global/L/logo.svg</string>
+    <string name="was_logo">https://cdn.nba.com/logos/nba/1610612764/global/L/logo.svg</string>
+    <string name="atl_logo">https://cdn.nba.com/logos/nba/1610612737/global/L/logo.svg</string>
+    <string name="cha_logo">https://cdn.nba.com/logos/nba/1610612766/global/L/logo.svg</string>
+    <string name="den_logo">https://cdn.nba.com/logos/nba/1610612743/global/L/logo.svg</string>
+    <string name="min_logo">https://cdn.nba.com/logos/nba/1610612750/global/L/logo.svg</string>
+    <string name="okc_logo">https://cdn.nba.com/logos/nba/1610612760/global/L/logo.svg</string>
+    <string name="por_logo">https://cdn.nba.com/logos/nba/1610612757/global/L/logo.svg</string>
+    <string name="uta_logo">https://cdn.nba.com/logos/nba/1610612762/global/L/logo.svg</string>
+    <string name="gsw_logo">https://cdn.nba.com/logos/nba/1610612744/global/L/logo.svg</string>
+    <string name="lac_logo">https://cdn.nba.com/logos/nba/1610612746/global/L/logo.svg</string>
+    <string name="lal_logo">https://cdn.nba.com/logos/nba/1610612747/global/L/logo.svg</string>
+    <string name="phx_logo">https://cdn.nba.com/logos/nba/1610612756/global/L/logo.svg</string>
+    <string name="sac_logo">https://cdn.nba.com/logos/nba/1610612758/global/L/logo.svg</string>
+    <string name="dal_logo">https://cdn.nba.com/logos/nba/1610612742/global/L/logo.svg</string>
+    <string name="hou_logo">https://cdn.nba.com/logos/nba/1610612745/global/L/logo.svg</string>
+    <string name="mem_logo">https://cdn.nba.com/logos/nba/1610612763/global/L/logo.svg</string>
+    <string name="nop_logo">https://cdn.nba.com/logos/nba/1610612740/global/L/logo.svg</string>
+    <string name="sas_logo">https://cdn.nba.com/logos/nba/1610612759/global/L/logo.svg</string>
+
+
+</resources>

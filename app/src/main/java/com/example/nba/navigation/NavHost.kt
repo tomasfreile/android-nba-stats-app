@@ -23,18 +23,16 @@ fun NavHostComposable(innerPadding: PaddingValues, navController: NavHostControl
             .padding(horizontal = 10.dp)
     ) {
         composable(Screen.Home.name) {
-            Home()
+            Home(navController)
         }
         composable(Screen.Favourites.name) {
+            //Players()
+        }
+
+        composable(Screen.AllPlayers.name) {
             Players()
         }
 
-//        composable(Screen.TeamDetails.route) {
-//            TeamDetails()
-//        }
-//        composable(Screen.PlayerDetails.route) {
-//            PlayerDetails()
-//        }
     }
 
 }
