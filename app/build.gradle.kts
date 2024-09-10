@@ -66,6 +66,8 @@ dependencies {
     implementation (libs.converter.gson)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.hilt.android)
+    implementation(libs.coil.compose)
+    implementation(libs.io.coil.kt.coil.svg)
     kapt(libs.hilt.android.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

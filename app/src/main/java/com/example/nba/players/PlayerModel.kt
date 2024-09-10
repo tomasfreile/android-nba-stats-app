@@ -1,5 +1,6 @@
 package com.example.nba.players
 
+
 data class Player(
     val id: Int,
     val playerName: String,
@@ -8,3 +9,4 @@ data class Player(
     val team: String,
     val season: Int
 )
+
