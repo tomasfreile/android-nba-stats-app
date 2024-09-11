@@ -1,7 +1,7 @@
 package com.example.nba.apiManager
 
 
-import com.example.nba.players.Player
+import com.example.nba.data.Player
 import retrofit.http.GET
 import retrofit.http.Path
 import retrofit.Call

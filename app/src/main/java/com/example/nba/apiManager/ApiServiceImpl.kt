@@ -3,7 +3,7 @@ package com.example.nba.apiManager
 import android.content.Context
 import android.widget.Toast
 import com.example.nba.R
-import com.example.nba.players.Player
+import com.example.nba.data.Player
 
 import retrofit.GsonConverterFactory
 import retrofit.Retrofit

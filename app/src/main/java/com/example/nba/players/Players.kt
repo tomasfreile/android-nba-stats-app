@@ -1,5 +1,6 @@
 package com.example.nba.players
 
+import android.content.Context
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -33,17 +34,20 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.example.nba.R
+import com.example.nba.data.Player
+import com.example.nba.navigation.Screen
 import com.example.nba.ui.theme.Black
 import com.example.nba.ui.theme.White
 
 
 @Composable
-fun Players() {
+fun Players(navController: NavHostController) {
     val viewModel = hiltViewModel<PlayersViewModel>()
 
     val playerList by viewModel.players.collectAsState()
@@ -54,7 +58,7 @@ fun Players() {
     val selectedYear = remember { mutableStateOf(years[0]) }
 
     LaunchedEffect(selectedYear.value) {
-        viewModel.selectPlayersBySeason(selectedYear.value)
+        viewModel.fetchPlayers(selectedYear.value)
     }
 
 
@@ -127,11 +131,67 @@ fun Players() {
                             .weight(1f)
                     ) {
                         items(playerList) { player ->
-                            PlayerCard(player = player)
+                            PlayerCard(player = player,onClick = {
+                                viewModel.getPlayerById(player.id)
+                                navController.navigate("playerDetail/${player.id}")
+                            })
                         }
                     }
                 }
             }
+    }
+}
+
+
+@Composable
+fun PlayerCard(player: Player, onClick: () -> Unit) {
+    val context = LocalContext.current
+
+    val teamLogoUrl = getTeamLogoUrl(player.team, context)
+    val imageLoader = ImageLoader.Builder(context)
+        .components {
+            add(SvgDecoder.Factory())
+        }
+        .build()
+
+
+    Surface(
+        modifier = Modifier.fillMaxWidth()
+            .clickable {
+                onClick()
+        },
+        shape = RoundedCornerShape(8.dp),
+        color = MaterialTheme.colorScheme.primary,
+
+    ) {
+        Row(
+            modifier = Modifier.padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(4.dp),
+                horizontalAlignment = Alignment.Start
+            ) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                ) {
+                    Text(text = player.playerName, color = MaterialTheme.colorScheme.onSurface)
+                    Text(text = "-", color = MaterialTheme.colorScheme.onSurface)
+                    Text(text = player.position, color = MaterialTheme.colorScheme.onSurface)
+                }
+                Text(text = player.age.toString(), color = MaterialTheme.colorScheme.onSurface)
+            }
+            AsyncImage(
+                model = ImageRequest.Builder(context)
+                    .data(teamLogoUrl)
+                    .crossfade(true)
+                    .build(),
+                imageLoader = imageLoader,
+                contentDescription = player.team,
+                modifier = Modifier.size(48.dp)
+            )
+        }
     }
 }
 
@@ -158,84 +218,42 @@ fun YearButton(year: String, isSelected: Boolean, onClick: () -> Unit) {
         )
     }
 }
-
-@Composable
-fun PlayerCard(player: Player) {
-    val context = LocalContext.current
-
-    val teamLogoResId = teamLogos[player.team] ?: R.string.default_logo
-    val teamLogoUrl = stringResource(id = teamLogoResId)
-    val imageLoader = ImageLoader.Builder(context)
-        .components {
-            add(SvgDecoder.Factory())
-        }
-        .build()
-
-
-    Surface(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(8.dp),
-        color = MaterialTheme.colorScheme.primary,
-    ) {
-        Row(
-            modifier = Modifier.padding(8.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(4.dp),
-                horizontalAlignment = Alignment.Start
-            ) {
-                Text(text = player.playerName, color = MaterialTheme.colorScheme.onSurface)
-                Text(text = player.age.toString(), color = MaterialTheme.colorScheme.onSurface)
-                Text(text = player.team, color = MaterialTheme.colorScheme.onSurface)
-            }
-            AsyncImage(
-                model = ImageRequest.Builder(context)
-                    .data(teamLogoUrl)
-                    .crossfade(true)
-                    .build(),
-                imageLoader = imageLoader,
-                contentDescription = player.team,
-                modifier = Modifier.size(48.dp)
-            )
-        }
-    }
-}
-
 fun generateYearList(startYear: Int, endYear: Int): List<String> {
     return (startYear..endYear).map { it.toString() }.reversed()
 }
 
-val teamLogos = mapOf(
-    "ATL" to R.string.ATL,
-    "BOS" to R.string.BOS,
-    "BRK" to R.string.BKN,
-    "CHO" to R.string.CHA,
-    "CHI" to R.string.CHI,
-    "CLE" to R.string.CLE,
-    "DAL" to R.string.DAL,
-    "DEN" to R.string.DEN,
-    "DET" to R.string.DET,
-    "GSW" to R.string.GSW,
-    "HOU" to R.string.HOU,
-    "IND" to R.string.IND,
-    "LAC" to R.string.LAC,
-    "LAL" to R.string.LAL,
-    "MEM" to R.string.MEM,
-    "MIA" to R.string.MIA,
-    "MIL" to R.string.MIL,
-    "MIN" to R.string.MIN,
-    "NOP" to R.string.NOP,
-    "NYK" to R.string.NYC,
-    "OKC" to R.string.OKC,
-    "ORL" to R.string.ORL,
-    "PHI" to R.string.PHI,
-    "PHO" to R.string.PHX,
-    "POR" to R.string.POR,
-    "SAC" to R.string.SAC,
-    "SAS" to R.string.SAS,
-    "TOR" to R.string.TOR,
-    "UTA" to R.string.UTA,
-    "WAS" to R.string.WAS
-)
+fun getTeamLogoUrl(teamName: String, context: Context): String {
+    return when (teamName) {
+        context.getString(R.string.Atlanta) -> context.getString(R.string.ATL_URL)
+        context.getString(R.string.Boston) -> context.getString(R.string.BOS_URL)
+        context.getString(R.string.Brooklyn) -> context.getString(R.string.BKN_URL)
+        context.getString(R.string.Charlotte) -> context.getString(R.string.CHA_URL)
+        context.getString(R.string.Chicago) -> context.getString(R.string.CHI_URL)
+        context.getString(R.string.Cleveland) -> context.getString(R.string.CLE_URL)
+        context.getString(R.string.Dallas) -> context.getString(R.string.DAL_URL)
+        context.getString(R.string.Denver) -> context.getString(R.string.DEN_URL)
+        context.getString(R.string.Detroit) -> context.getString(R.string.DET_URL)
+        context.getString(R.string.GoldenState) -> context.getString(R.string.GSW_URL)
+        context.getString(R.string.Houston) -> context.getString(R.string.HOU_URL)
+        context.getString(R.string.Indiana) -> context.getString(R.string.IND_URL)
+        context.getString(R.string.LAClippers) -> context.getString(R.string.LAC_URL)
+        context.getString(R.string.LALakers) -> context.getString(R.string.LAL_URL)
+        context.getString(R.string.Memphis) -> context.getString(R.string.MEM_URL)
+        context.getString(R.string.Miami) -> context.getString(R.string.MIA_URL)
+        context.getString(R.string.Milwaukee) -> context.getString(R.string.MIL_URL)
+        context.getString(R.string.Minnesota) -> context.getString(R.string.MIN_URL)
+        context.getString(R.string.NewOrleans) -> context.getString(R.string.NOP_URL)
+        context.getString(R.string.NewYork) -> context.getString(R.string.NYC_URL)
+        context.getString(R.string.OklahomaCity) -> context.getString(R.string.OKC_URL)
+        context.getString(R.string.Orlando) -> context.getString(R.string.ORL_URL)
+        context.getString(R.string.Philadelphia) -> context.getString(R.string.PHI_URL)
+        context.getString(R.string.Phoenix) -> context.getString(R.string.PHX_URL)
+        context.getString(R.string.Portland) -> context.getString(R.string.POR_URL)
+        context.getString(R.string.Sacramento) -> context.getString(R.string.SAC_URL)
+        context.getString(R.string.SanAntonio) -> context.getString(R.string.SAS_URL)
+        context.getString(R.string.Toronto) -> context.getString(R.string.TOR_URL)
+        context.getString(R.string.Utah) -> context.getString(R.string.UTA_URL)
+        context.getString(R.string.Washington) -> context.getString(R.string.WAS_URL)
+        else -> context.getString(R.string.default_logo) // default URL in case team is not found
+    }
+}
