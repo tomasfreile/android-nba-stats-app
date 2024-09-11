@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -61,9 +62,16 @@ fun Players(navController: NavHostController) {
         viewModel.fetchPlayers(selectedYear.value)
     }
 
+    val listState = rememberLazyListState()
+
+    LaunchedEffect(selectedYear.value) {
+        val index = years.indexOf(selectedYear.value)
+        listState.scrollToItem(index)
+    }
 
     if (loading){
         LazyRow(
+            state = listState,
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier
                 .fillMaxWidth()
@@ -111,6 +119,7 @@ fun Players(navController: NavHostController) {
                 modifier = Modifier.fillMaxSize()
             ) {
                 LazyRow(
+                    state = listState,
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier
                         .fillMaxWidth()
@@ -254,6 +263,6 @@ fun getTeamLogoUrl(teamName: String, context: Context): String {
         context.getString(R.string.Toronto) -> context.getString(R.string.TOR_URL)
         context.getString(R.string.Utah) -> context.getString(R.string.UTA_URL)
         context.getString(R.string.Washington) -> context.getString(R.string.WAS_URL)
-        else -> context.getString(R.string.default_logo) // default URL in case team is not found
+        else -> context.getString(R.string.default_logo)
     }
 }

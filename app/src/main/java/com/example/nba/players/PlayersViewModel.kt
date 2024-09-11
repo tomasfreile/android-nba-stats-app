@@ -46,8 +46,11 @@ class PlayersViewModel @Inject constructor(
         viewModelScope.launch {
             val playersFromDB = appDatabase.playerDao().getPlayersBySeason(season)
             if(playersFromDB.isNotEmpty()){
-                _players.value = playersFromDB
+                _players.value = playersFromDB.sortedBy { player -> player.playerName }
+                _loadingPlayers.value = false
+                Log.d("PlayersViewModel", "Players fetched from DB")
             } else {
+                Log.d("PlayersViewModel", "Fetching players from API")
                 apiService.getPlayers(
                     season = season,
                     context = context,
@@ -55,6 +58,7 @@ class PlayersViewModel @Inject constructor(
                         viewModelScope.launch {
                             appDatabase.playerDao().insertPlayers(it)
                             _players.value = it.sortedBy { player -> player.playerName }
+                            Log.d("PlayersViewModel", "Players fetched from API and saved to DB")
                         }
                         _showRetryButton.value = false
                     },
