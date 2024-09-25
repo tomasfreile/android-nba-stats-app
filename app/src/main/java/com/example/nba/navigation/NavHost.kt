@@ -30,11 +30,12 @@ fun NavHostComposable(innerPadding: PaddingValues, navController: NavHostControl
         composable(Screen.Home.name) {
             Home(navController)
         }
-        composable(Screen.Favourites.name) {
-            //Players()
-        }
 
         composable(Screen.AllPlayers.name) {
+            Players(navController)
+        }
+
+        composable(Screen.Favourites.name) {
             Players(navController)
         }
 

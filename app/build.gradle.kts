@@ -70,6 +70,7 @@ dependencies {
     implementation(libs.io.coil.kt.coil.svg)
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
     kapt("androidx.room:room-compiler:2.6.1")
     kapt(libs.hilt.android.compiler)
     testImplementation(libs.junit)
