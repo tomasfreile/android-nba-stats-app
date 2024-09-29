@@ -9,11 +9,10 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
 import com.example.nba.home.Home
-import com.example.nba.players.PlayerDetail
+import com.example.nba.playerDetail.PlayerDetail
+import com.example.nba.playerDetail.PlayerDetailScreen
 import com.example.nba.players.Players
 import com.example.nba.players.PlayersViewModel
 
@@ -42,7 +41,7 @@ fun NavHostComposable(innerPadding: PaddingValues, navController: NavHostControl
         composable("playerDetail/{playerId}") { backStackEntry ->
             val playerId = backStackEntry.arguments?.getString("playerId")?.toIntOrNull()
             playerId?.let {
-                PlayerDetail(playerId = it, viewModel = hiltViewModel())
+                PlayerDetailScreen(playerId = it, viewModel = hiltViewModel())
             }
         }
     }

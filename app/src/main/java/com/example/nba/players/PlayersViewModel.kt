@@ -4,17 +4,17 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.nba.R
 import com.example.nba.apiManager.ApiServiceImpl
 import com.example.nba.data.AppDatabase
 import com.example.nba.data.Player
-import com.example.nba.data.PlayerDao
-import dagger.hilt.android.internal.Contexts.getApplication
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,17 +23,35 @@ class PlayersViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
     private val apiService: ApiServiceImpl,
 ) : ViewModel() {
-    private val _players = MutableStateFlow(listOf<Player>())
-    val players: StateFlow<List<Player>> = _players.asStateFlow()
+    private val _isSearching = MutableStateFlow(false)
+    val isSearching: StateFlow<Boolean> = _isSearching.asStateFlow()
 
-    private val _selectedPlayer = MutableStateFlow<Player?>(null)
-    val selectedPlayer: StateFlow<Player?> = _selectedPlayer
+    private val _searchText = MutableStateFlow("")
+    val searchText: StateFlow<String> = _searchText.asStateFlow()
+
+    private val _players = MutableStateFlow(listOf<Player>())
+    //val players: StateFlow<List<Player>> = _players.asStateFlow()
+    val players = searchText
+        .combine(_players) { text, players ->
+            if (text.isBlank()) {
+                players
+            }
+            players.filter { player ->
+                player.playerName.uppercase().contains(text.trim().uppercase())
+            }
+        }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = _players.value
+        )
 
     private val _loadingPlayers = MutableStateFlow(false)
     val loadingPlayers: StateFlow<Boolean> = _loadingPlayers.asStateFlow()
 
     private val _showRetryButton = MutableStateFlow(false)
     val showRetryButton: StateFlow<Boolean> = _showRetryButton.asStateFlow()
+
+
 
     private val appDatabase = AppDatabase.getInstance(context)
 
@@ -76,10 +94,16 @@ class PlayersViewModel @Inject constructor(
         fetchPlayers(season)
     }
 
-    fun getPlayerById(id: Int) {
-        viewModelScope.launch {
-            val player = appDatabase.playerDao().getPlayerById(id)
-            _selectedPlayer.value = player
+    fun onSearchTextChange(text: String) {
+        _searchText.value = text
+    }
+
+    fun onToggleSearch() {
+        _isSearching.value = !_isSearching.value
+        if(!_isSearching.value){
+            _searchText.value = ""
         }
     }
+
+
 }

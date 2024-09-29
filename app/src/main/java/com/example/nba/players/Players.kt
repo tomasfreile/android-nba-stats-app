@@ -1,5 +1,6 @@
 package com.example.nba.players
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -13,26 +14,33 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -42,7 +50,6 @@ import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.example.nba.R
 import com.example.nba.data.Player
-import com.example.nba.navigation.Screen
 import com.example.nba.ui.theme.Black
 import com.example.nba.ui.theme.White
 
@@ -54,37 +61,23 @@ fun Players(navController: NavHostController) {
     val playerList by viewModel.players.collectAsState()
     val loading by viewModel.loadingPlayers.collectAsState()
     val showRetryButton by viewModel.showRetryButton.collectAsState()
+    val searchText by viewModel.searchText.collectAsState()
+    val isSearching by viewModel.isSearching.collectAsState()
 
-    val years = remember { generateYearList(1993, 2024) }
+    val startYear = stringResource(id = R.string.start_year).toInt()
+    val endYear = stringResource(id = R.string.end_year).toInt()
+    val years = remember { generateYearList(startYear, endYear) }
     val selectedYear = remember { mutableStateOf(years[0]) }
 
-    LaunchedEffect(selectedYear.value) {
+
+    LaunchedEffect(Unit) {
         viewModel.fetchPlayers(selectedYear.value)
     }
 
     val listState = rememberLazyListState()
 
-    LaunchedEffect(selectedYear.value) {
-        val index = years.indexOf(selectedYear.value)
-        listState.scrollToItem(index)
-    }
-
     if (loading){
-        LazyRow(
-            state = listState,
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-        ) {
-            items(years) { year ->
-                YearButton(
-                    year = year,
-                    isSelected = selectedYear.value == year,
-                    onClick = { selectedYear.value = year }
-                )
-            }
-        }
+        YearButtonList(listState, years, selectedYear)
         Box(modifier = Modifier.fillMaxSize()) {
             CircularProgressIndicator(
                 modifier = Modifier
@@ -118,21 +111,11 @@ fun Players(navController: NavHostController) {
             Column(
                 modifier = Modifier.fillMaxSize()
             ) {
-                LazyRow(
-                    state = listState,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp)
-                ) {
-                    items(years) { year ->
-                        YearButton(
-                            year = year,
-                            isSelected = selectedYear.value == year,
-                            onClick = { selectedYear.value = year }
-                        )
-                    }
-                }
+                SearchBar(searchText = searchText, onSearchTextChange = {
+                    viewModel.onSearchTextChange(it)
+                })
+
+                YearButtonList(listState, years, selectedYear)
                     LazyColumn(
                         verticalArrangement = Arrangement.spacedBy(8.dp),
                         modifier = Modifier
@@ -141,13 +124,35 @@ fun Players(navController: NavHostController) {
                     ) {
                         items(playerList) { player ->
                             PlayerCard(player = player,onClick = {
-                                viewModel.getPlayerById(player.id)
                                 navController.navigate("playerDetail/${player.id}")
                             })
                         }
                     }
                 }
             }
+    }
+}
+
+@Composable
+private fun YearButtonList(
+    listState: LazyListState,
+    years: List<String>,
+    selectedYear: MutableState<String>
+) {
+    LazyRow(
+        state = listState,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        items(years) { year ->
+            YearButton(
+                year = year,
+                isSelected = selectedYear.value == year,
+                onClick = { selectedYear.value = year }
+            )
+        }
     }
 }
 
@@ -165,10 +170,11 @@ fun PlayerCard(player: Player, onClick: () -> Unit) {
 
 
     Surface(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .clickable {
                 onClick()
-        },
+            },
         shape = RoundedCornerShape(8.dp),
         color = MaterialTheme.colorScheme.primary,
 
@@ -227,11 +233,32 @@ fun YearButton(year: String, isSelected: Boolean, onClick: () -> Unit) {
         )
     }
 }
-fun generateYearList(startYear: Int, endYear: Int): List<String> {
+
+@Composable
+fun SearchBar(searchText: String, onSearchTextChange: (String) -> Unit) {
+    TextField(
+        value = searchText,
+        onValueChange = { onSearchTextChange(it) },
+        placeholder = { Text(text = "Search players...") },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        shape = RoundedCornerShape(8.dp),
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = MaterialTheme.colorScheme.primary,
+            unfocusedContainerColor = MaterialTheme.colorScheme.primary,
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            cursorColor = Color.White
+        ),
+    )
+}
+
+private fun generateYearList(startYear: Int, endYear: Int): List<String> {
     return (startYear..endYear).map { it.toString() }.reversed()
 }
 
-fun getTeamLogoUrl(teamName: String, context: Context): String {
+private fun getTeamLogoUrl(teamName: String, context: Context): String {
     return when (teamName) {
         context.getString(R.string.Atlanta) -> context.getString(R.string.ATL_URL)
         context.getString(R.string.Boston) -> context.getString(R.string.BOS_URL)
@@ -265,4 +292,17 @@ fun getTeamLogoUrl(teamName: String, context: Context): String {
         context.getString(R.string.Washington) -> context.getString(R.string.WAS_URL)
         else -> context.getString(R.string.default_logo)
     }
+}
+
+
+@Preview
+@Composable
+fun PreviewSearchBar() {
+    SearchBar(searchText = "", onSearchTextChange = {})
+}
+
+@Preview
+@Composable
+fun PreviewYearButton() {
+    YearButton(year = "2021", isSelected = false, onClick = {})
 }

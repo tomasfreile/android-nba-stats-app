@@ -5,7 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Player::class], version = 1)
+@Database(
+    version = 2,
+    entities = [Player::class],
+    exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun playerDao(): PlayerDao
 
@@ -19,7 +23,9 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "nba_database"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }
