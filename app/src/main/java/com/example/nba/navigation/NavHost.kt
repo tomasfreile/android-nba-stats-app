@@ -10,6 +10,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import com.example.nba.favourites.Favourites
 import com.example.nba.home.Home
 import com.example.nba.playerDetail.PlayerDetail
 import com.example.nba.playerDetail.PlayerDetailScreen
@@ -35,7 +36,7 @@ fun NavHostComposable(innerPadding: PaddingValues, navController: NavHostControl
         }
 
         composable(Screen.Favourites.name) {
-            Players(navController)
+            Favourites(navController)
         }
 
         composable("playerDetail/{playerId}") { backStackEntry ->

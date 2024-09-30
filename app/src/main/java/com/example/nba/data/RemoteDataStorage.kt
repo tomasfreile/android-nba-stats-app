@@ -6,12 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    version = 2,
-    entities = [Player::class],
+    version = 5,
+    entities = [Player::class, FavoritePlayer::class],
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun playerDao(): PlayerDao
+    abstract fun favoritePlayerDao(): FavoritePlayerDao
 
     companion object {
         @Volatile

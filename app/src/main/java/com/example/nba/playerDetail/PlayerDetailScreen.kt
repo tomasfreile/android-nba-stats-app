@@ -15,13 +15,16 @@ import androidx.hilt.navigation.compose.hiltViewModel
 @Composable
 fun PlayerDetailScreen(playerId: Int, viewModel: PlayerDetailViewModel = hiltViewModel()) {
     val player by viewModel.selectedPlayer.collectAsState()
+    val isFavorite by viewModel.isFavorite.collectAsState()
 
     LaunchedEffect(playerId) {
         viewModel.getPlayerById(playerId)
     }
 
     player?.let {
-        PlayerDetail(player = it)
+        PlayerDetail(player = it, isFavorite = isFavorite) {
+            viewModel.toggleFavorite(playerId)
+        }
     } ?: run {
         CircularProgressIndicator(
             modifier = Modifier.size(64.dp),

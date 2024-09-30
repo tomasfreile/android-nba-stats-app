@@ -4,16 +4,22 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.nba.data.Player
 
 @Composable
-fun PlayerDetail(player: Player) {
+fun PlayerDetail(player: Player, isFavorite: Boolean, onToggleFavorite: () -> Unit) {
+
     Surface(
         modifier = Modifier
             .fillMaxSize(),
@@ -24,11 +30,17 @@ fun PlayerDetail(player: Player) {
             horizontalAlignment = Alignment.Start
         ) {
             item {
-                Text(
-                    text = "${player.playerName} (${player.position})",
-                    style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
-                    color = MaterialTheme.colorScheme.onBackground
-                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                ) {
+                    Text(
+                        text = "${player.playerName} (${player.position})",
+                        style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                    ToggleFavoriteButton(isFavorite = isFavorite, onToggleFavorite = onToggleFavorite)
+                }
             }
 
             item {
@@ -119,4 +131,62 @@ fun StatRow(label: String, value: String) {
             color = MaterialTheme.colorScheme.onSurface
         )
     }
+}
+
+@Composable
+fun ToggleFavoriteButton(isFavorite: Boolean, onToggleFavorite: () -> Unit) {
+    Button(
+        onClick = onToggleFavorite,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = if (isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface,
+            contentColor = if (isFavorite) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface,
+        )
+    ) {
+        Icon(
+            imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+            contentDescription = "Favorite",
+            modifier = Modifier.size(ButtonDefaults.IconSize)
+        )
+    }
+
+}
+
+@Preview
+@Composable
+private fun PreviewPlayerDetail() {
+    val player = Player(
+        id = 1,
+        playerName = "John Doe",
+        position = "Guard",
+        age = 25,
+        team = "Team A",
+        season = "2024",
+        games = 10,
+        gamesStarted = 10,
+        minutesPg = 30.0f,
+        fieldGoals = 100,
+        fieldAttempts = 200,
+        fieldPercent = 50.0f,
+        threeFg = 50,
+        threeAttempts = 100,
+        threePercent = 50.0f,
+        twoFg = 50,
+        twoAttempts = 100,
+        twoPercent = 50.0f,
+        effectFgPercent = 50.0f,
+        ft = 50,
+        ftAttempts = 100,
+        ftPercent = 50.0f,
+        offensiveRb = 10,
+        defensiveRb = 10,
+        totalRb = 20,
+        assists = 10,
+        steals = 5,
+        blocks = 5,
+        turnovers = 5,
+        personalFouls = 5,
+        points = 30
+    )
+    PlayerDetail(player = player, isFavorite = false, onToggleFavorite = { })
+
 }
