@@ -26,6 +26,10 @@ class PlayersViewModel @Inject constructor(
     private val _searchText = MutableStateFlow("")
     val searchText: StateFlow<String> = _searchText.asStateFlow()
 
+    // This will hold the unfiltered full list of players
+    private val _originalPlayers = MutableStateFlow(listOf<Player>())
+
+    // This is the filtered list of players
     private val _players = MutableStateFlow(listOf<Player>())
     val players: StateFlow<List<Player>> = searchText
         .combine(_players) { text, players ->
@@ -56,7 +60,8 @@ class PlayersViewModel @Inject constructor(
         viewModelScope.launch {
             val playersFromDB = appDatabase.playerDao().getPlayersBySeason(season)
             if (playersFromDB.isNotEmpty()) {
-                _players.value = playersFromDB.sortedBy { player -> player.playerName }
+                _originalPlayers.value = playersFromDB.sortedBy { player -> player.playerName }
+                _players.value = _originalPlayers.value
                 _loadingPlayers.value = false
             } else {
                 apiService.getPlayers(
@@ -65,7 +70,8 @@ class PlayersViewModel @Inject constructor(
                     onSuccess = {
                         viewModelScope.launch {
                             appDatabase.playerDao().insertPlayers(it)
-                            _players.value = it.sortedBy { player -> player.playerName }
+                            _originalPlayers.value = it.sortedBy { player -> player.playerName }
+                            _players.value = _originalPlayers.value
                         }
                         _showRetryButton.value = false
                     },
@@ -80,6 +86,14 @@ class PlayersViewModel @Inject constructor(
         }
     }
 
+    fun filterByTeams(teams: Set<String>) {
+        if (teams.isEmpty()) {
+            _players.value = _originalPlayers.value
+        } else {
+            _players.value = _originalPlayers.value.filter { teams.contains(it.team) }
+        }
+    }
+
     fun retryLoadingPlayers(season: String) {
         fetchPlayers(season)
     }
@@ -87,5 +101,4 @@ class PlayersViewModel @Inject constructor(
     fun onSearchTextChange(text: String) {
         _searchText.value = text
     }
-
 }
