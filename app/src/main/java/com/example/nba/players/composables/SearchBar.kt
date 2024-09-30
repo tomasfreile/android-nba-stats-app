@@ -10,8 +10,10 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.nba.ui.dimensions.Dimensions
 
 
 @Composable
@@ -19,11 +21,11 @@ fun SearchBar(searchText: String, onSearchTextChange: (String) -> Unit) {
     TextField(
         value = searchText,
         onValueChange = { onSearchTextChange(it) },
-        placeholder = { Text(text = "Search players...") },
+        placeholder = { Text(text = stringResource(id = com.example.nba.R.string.search_bar_placeholder)) },
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(Dimensions.searchBarBorderRadius),
         colors = TextFieldDefaults.colors(
             focusedContainerColor = MaterialTheme.colorScheme.primary,
             unfocusedContainerColor = MaterialTheme.colorScheme.primary,

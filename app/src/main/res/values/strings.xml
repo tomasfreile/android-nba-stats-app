@@ -37,4 +37,38 @@
     <string name="Utah">UTA</string>
     <string name="Washington">WAS</string>
     <string name="no_favourites">You don\'t have any favourite players</string>
+    <string name="toast_error_getting_players">Error getting players</string>
+    <string name="toast_added_to_favourites">Player added to favourites</string>
+    <string name="toast_removed_from_favourites">Player removed from favourites</string>
+
+    <!-- Strings for PlayerDetail composable -->
+    <string name="age_label">Age</string>
+    <string name="team_label">Team</string>
+    <string name="shooting_stats_title">Shooting Stats</string>
+    <string name="field_goals_label">Field Goals</string>
+    <string name="field_goal_percentage_label">Field Goal %</string>
+    <string name="three_pt_label">3-Pt FGs</string>
+    <string name="three_pt_percentage_label">3-Pt %</string>
+    <string name="two_pt_label">2-Pt FGs</string>
+    <string name="two_pt_percentage_label">2-Pt %</string>
+    <string name="effective_fg_percentage_label">Effective FG%</string>
+    <string name="free_throws_label">Free Throws</string>
+    <string name="free_throw_percentage_label">FT %</string>
+    <string name="rebounding_title">Rebounding</string>
+    <string name="offensive_rebounds_label">Offensive Rebounds</string>
+    <string name="defensive_rebounds_label">Defensive Rebounds</string>
+    <string name="total_rebounds_label">Total Rebounds</string>
+    <string name="other_stats_title">Other Stats</string>
+    <string name="assists_label">Assists</string>
+    <string name="steals_label">Steals</string>
+    <string name="blocks_label">Blocks</string>
+    <string name="turnovers_label">Turnovers</string>
+    <string name="personal_fouls_label">Personal Fouls</string>
+    <string name="points_label">Points</string>
+
+    <string name="search_bar_placeholder">Search players...</string>
+    <string name="season_label">"Season: "</string>
+    <string name="minus">-</string>
+    <string name="filter_by_team">Filter by Team</string>
+    <string name="_2024">2024</string>
 </resources>

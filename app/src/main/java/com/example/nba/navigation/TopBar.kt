@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.nba.R
+import com.example.nba.ui.dimensions.Dimensions
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -44,7 +45,7 @@ fun TopBar(navController: NavHostController) {
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = "Back",
                     modifier = Modifier
-                        .padding(start = 10.dp)
+                        .padding(start = Dimensions.paddingSmall)
                         .clickable(
                             interactionSource = remember { MutableInteractionSource() },
                             indication = rememberRipple(bounded = false),
@@ -71,7 +72,7 @@ private fun Logo() {
         painter = painterResource(id = R.drawable.nba_big_logo),
         contentDescription = null,
         modifier = Modifier
-            .size(80.dp)
-            .padding(8.dp)
+            .size(Dimensions.logoSize)
+            .padding(Dimensions.paddingSmall)
     )
 }

@@ -12,10 +12,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.example.nba.favourites.Favourites
 import com.example.nba.home.Home
-import com.example.nba.playerDetail.PlayerDetail
 import com.example.nba.playerDetail.PlayerDetailScreen
 import com.example.nba.players.Players
-import com.example.nba.players.PlayersViewModel
 
 @Composable
 fun NavHostComposable(innerPadding: PaddingValues, navController: NavHostController) {

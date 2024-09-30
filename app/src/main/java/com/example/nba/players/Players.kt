@@ -35,7 +35,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.nba.R
@@ -43,6 +42,7 @@ import com.example.nba.players.composables.DrawerContent
 import com.example.nba.players.composables.PlayerCard
 import com.example.nba.players.composables.SearchBar
 import com.example.nba.players.composables.YearButtonList
+import com.example.nba.ui.dimensions.Dimensions
 import com.example.nba.ui.theme.Black
 import com.example.nba.ui.theme.White
 import com.example.nba.utils.generateYearList
@@ -80,9 +80,9 @@ fun Players(navController: NavHostController) {
         drawerState = drawerState,
         drawerContent = {
             Surface(
-                modifier = Modifier.width(200.dp),
+                modifier = Modifier.width(Dimensions.drawerWidth),
                 color = MaterialTheme.colorScheme.primary,
-                shape = RoundedCornerShape(topEnd = 16.dp, bottomEnd = 16.dp)
+                shape = RoundedCornerShape(topEnd = Dimensions.drawerCornerRadius, bottomEnd = Dimensions.drawerCornerRadius),
             ) {
                 DrawerContent(
                     selectedTeams = selectedTeams.value,
@@ -118,7 +118,7 @@ fun Players(navController: NavHostController) {
                             Box(modifier = Modifier.fillMaxSize()) {
                                 CircularProgressIndicator(
                                     modifier = Modifier
-                                        .size(64.dp)
+                                        .size(Dimensions.circularProgressSize)
                                         .align(Alignment.Center),
                                     color = White,
                                     trackColor = Black
@@ -128,7 +128,7 @@ fun Players(navController: NavHostController) {
 
                         showRetryButton -> {
                             Column(
-                                verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically),
+                                verticalArrangement = Arrangement.spacedBy(Dimensions.paddingMedium, Alignment.CenterVertically),
                                 horizontalAlignment = Alignment.CenterHorizontally,
                             ) {
                                 Text(
@@ -144,9 +144,9 @@ fun Players(navController: NavHostController) {
 
                         else -> {
                             LazyColumn(
-                                verticalArrangement = Arrangement.spacedBy(8.dp),
+                                verticalArrangement = Arrangement.spacedBy(Dimensions.paddingSmall),
                                 modifier = Modifier
-                                    .padding(8.dp)
+                                    .padding(Dimensions.paddingSmall)
                                     .weight(1f)
                             ) {
                                 items(playerList) { player ->

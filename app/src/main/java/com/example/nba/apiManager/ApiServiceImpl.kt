@@ -21,6 +21,7 @@ class ApiServiceImpl @Inject constructor() {
         onFail: () -> Unit,
         loadingFinished: () -> Unit
     ) {
+
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(context.getString(R.string.base_url))
             .addConverterFactory(GsonConverterFactory.create())
@@ -38,11 +39,11 @@ class ApiServiceImpl @Inject constructor() {
                     onSuccess(players)
                 }
                  else {
-                    onFailure(Exception("Error getting players"))
+                    onFailure(Exception(context.getString(R.string.toast_error_getting_players)))
                 }
             }
             override fun onFailure(t: Throwable?) {
-                Toast.makeText(context, "Error getting players", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.toast_error_getting_players), Toast.LENGTH_SHORT).show()
                 onFail()
                 loadingFinished()
             }

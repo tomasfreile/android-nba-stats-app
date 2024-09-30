@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.nba.ui.dimensions.Dimensions
 
 @Composable
 fun YearButtonList(
@@ -19,10 +20,10 @@ fun YearButtonList(
 ) {
     LazyRow(
         state = listState,
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(Dimensions.paddingSmall),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(Dimensions.paddingSmall)
     ) {
         items(years) { year ->
             YearButton(

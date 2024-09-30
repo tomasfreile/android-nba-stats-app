@@ -15,12 +15,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
+import com.example.nba.R
 import com.example.nba.data.Player
+import com.example.nba.ui.dimensions.Dimensions
 import com.example.nba.utils.getTeamLogoUrl
 
 
@@ -39,23 +42,23 @@ fun PlayerCard(player: Player, onClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .clickable { onClick() },
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(Dimensions.cardBorderRadius),
         color = MaterialTheme.colorScheme.primary,
     ) {
         Row(
-            modifier = Modifier.padding(8.dp),
+            modifier = Modifier.padding(Dimensions.paddingSmall),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(4.dp),
+                verticalArrangement = Arrangement.spacedBy(Dimensions.paddingXSmall),
                 horizontalAlignment = Alignment.Start
             ) {
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    horizontalArrangement = Arrangement.spacedBy(Dimensions.paddingXSmall),
                 ) {
                     Text(text = player.playerName, color = MaterialTheme.colorScheme.onSurface)
-                    Text(text = "-", color = MaterialTheme.colorScheme.onSurface)
+                    Text(text = stringResource(id= R.string.minus), color = MaterialTheme.colorScheme.onSurface)
                     Text(text = player.position, color = MaterialTheme.colorScheme.onSurface)
                 }
                 Text(text = player.age.toString(), color = MaterialTheme.colorScheme.onSurface)
@@ -67,7 +70,7 @@ fun PlayerCard(player: Player, onClick: () -> Unit) {
                     .build(),
                 imageLoader = imageLoader,
                 contentDescription = player.team,
-                modifier = Modifier.size(48.dp)
+                modifier = Modifier.size(Dimensions.teamImageSize)
             )
         }
     }

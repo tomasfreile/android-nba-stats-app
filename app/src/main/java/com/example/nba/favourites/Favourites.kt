@@ -20,6 +20,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.nba.R
 import com.example.nba.favourites.composables.PlayerCardFavourite
+import com.example.nba.ui.dimensions.Dimensions
 
 
 @Composable
@@ -44,7 +45,7 @@ fun Favourites(navController: NavHostController) {
             }
         } else {
             LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(Dimensions.paddingSmall),
                 ) {
                 items(playerList) { player ->
                     PlayerCardFavourite(player = player, onClick = {

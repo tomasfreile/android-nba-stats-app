@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.ImageLoader
 import coil.compose.AsyncImage
@@ -56,10 +57,10 @@ fun PlayerCardFavourite(player: Player, onClick: () -> Unit) {
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                 ) {
                     Text(text = player.playerName, color = MaterialTheme.colorScheme.onSurface)
-                    Text(text = "-", color = MaterialTheme.colorScheme.onSurface)
+                    Text(text = stringResource(R.string.minus), color = MaterialTheme.colorScheme.onSurface)
                     Text(text = player.position, color = MaterialTheme.colorScheme.onSurface)
                 }
-                Text(text = "Season: " + player.season, color = MaterialTheme.colorScheme.onSurface)
+                Text(text = stringResource(R.string.season_label) + player.season, color = MaterialTheme.colorScheme.onSurface)
             }
             AsyncImage(
                 model = ImageRequest.Builder(context)

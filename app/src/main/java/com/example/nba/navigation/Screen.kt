@@ -2,7 +2,6 @@ package com.example.nba.navigation
 
 enum class Screen{
     Home,
-    SeasonLeaders,
     AllPlayers,
     Favourites,
 }

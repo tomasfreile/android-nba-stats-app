@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.nba.R
 import com.example.nba.data.AppDatabase
 import com.example.nba.data.FavoritePlayer
 import com.example.nba.data.Player
@@ -47,11 +48,11 @@ class PlayerDetailViewModel @Inject constructor(
             if (isFavorite) {
                 appDatabase.favoritePlayerDao().delete(FavoritePlayer(playerId))
                 _isFavorite.value = false
-                Toast.makeText(context, "Player removed from favorites", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.toast_removed_from_favourites), Toast.LENGTH_SHORT).show()
             } else {
                 appDatabase.favoritePlayerDao().insert(FavoritePlayer(playerId))
                 _isFavorite.value = true
-                Toast.makeText(context, "Player added to favorites", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.toast_added_to_favourites), Toast.LENGTH_SHORT).show()
             }
         }
     }

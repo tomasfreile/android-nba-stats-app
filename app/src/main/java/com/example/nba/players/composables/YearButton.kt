@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.nba.ui.dimensions.Dimensions
 import com.example.nba.ui.theme.Black
 
 @Composable
@@ -24,17 +25,17 @@ fun YearButton(year: String, isSelected: Boolean, onClick: () -> Unit) {
                 indication = null
             ) { onClick() }
             .border(
-                1.dp,
+                Dimensions.buttonBorder,
                 Black,
-                shape = RoundedCornerShape(50)
+                shape = RoundedCornerShape(Dimensions.yearButtonBorderRadius)
             ),
-        shape = RoundedCornerShape(50),
+        shape = RoundedCornerShape(Dimensions.yearButtonBorderRadius),
         color = if (isSelected) MaterialTheme.colorScheme.surface else MaterialTheme.colorScheme.primary
     ) {
         Text(
             text = year,
             color = if (isSelected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onPrimary,
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+            modifier = Modifier.padding(horizontal = Dimensions.paddingLarge, vertical = Dimensions.paddingSmall)
         )
     }
 }

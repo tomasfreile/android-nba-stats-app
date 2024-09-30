@@ -3,6 +3,7 @@ package com.example.nba.players
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.nba.R
 import com.example.nba.apiManager.ApiServiceImpl
 import com.example.nba.data.AppDatabase
 import com.example.nba.data.Player
@@ -50,7 +51,7 @@ class PlayersViewModel @Inject constructor(
     private val appDatabase = AppDatabase.getInstance(context)
 
     init {
-        fetchPlayers("2024")
+        fetchPlayers(context.getString(R.string._2024))
     }
 
     fun fetchPlayers(season: String) {

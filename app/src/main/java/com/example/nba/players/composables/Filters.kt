@@ -18,8 +18,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.example.nba.R
+import com.example.nba.ui.dimensions.Dimensions
 import com.example.nba.utils.getTeamAbbreviationList
 
 @Composable
@@ -29,9 +32,11 @@ fun DrawerContent(
 ) {
 
     val context = LocalContext.current
-    Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
-        Text(text = "Filter by Team", fontWeight = FontWeight.Bold)
-        Spacer(modifier = Modifier.height(8.dp))
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .padding(Dimensions.paddingLarge)) {
+        Text(text = stringResource(R.string.filter_by_team), fontWeight = FontWeight.Bold)
+        Spacer(modifier = Modifier.height(Dimensions.paddingSmall))
 
         LazyColumn(modifier = Modifier.fillMaxWidth()) {
             val teams = getTeamAbbreviationList(context)
@@ -41,7 +46,7 @@ fun DrawerContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable { onTeamToggle(team) }
-                        .padding(vertical = 4.dp)
+                        .padding(vertical = Dimensions.paddingXSmall)
                 ) {
                     Checkbox(
                         checked = selectedTeams.contains(team),
@@ -52,7 +57,7 @@ fun DrawerContent(
 
                             )
                     )
-                    Spacer(modifier = Modifier.width(8.dp))
+                    Spacer(modifier = Modifier.width(Dimensions.paddingSmall))
                     Text(text = team)
                 }
             }
