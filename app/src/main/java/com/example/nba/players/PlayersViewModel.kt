@@ -26,10 +26,8 @@ class PlayersViewModel @Inject constructor(
     private val _searchText = MutableStateFlow("")
     val searchText: StateFlow<String> = _searchText.asStateFlow()
 
-    // This will hold the unfiltered full list of players
     private val _originalPlayers = MutableStateFlow(listOf<Player>())
 
-    // This is the filtered list of players
     private val _players = MutableStateFlow(listOf<Player>())
     val players: StateFlow<List<Player>> = searchText
         .combine(_players) { text, players ->
@@ -92,6 +90,10 @@ class PlayersViewModel @Inject constructor(
         } else {
             _players.value = _originalPlayers.value.filter { teams.contains(it.team) }
         }
+    }
+
+    fun resetFilters() {
+        _players.value = _originalPlayers.value
     }
 
     fun retryLoadingPlayers(season: String) {

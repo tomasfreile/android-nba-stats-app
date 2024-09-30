@@ -66,7 +66,9 @@ fun Players(navController: NavHostController) {
 
     val selectedTeams = remember { mutableStateOf(setOf<String>()) }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(selectedYear.value) {
+        viewModel.resetFilters()
+        selectedTeams.value = setOf()
         viewModel.fetchPlayers(selectedYear.value)
     }
 
@@ -160,6 +162,7 @@ fun Players(navController: NavHostController) {
         }
     )
 }
+
 
 fun Set<String>.toggleSelection(item: String): Set<String> {
     return if (contains(item)) {
