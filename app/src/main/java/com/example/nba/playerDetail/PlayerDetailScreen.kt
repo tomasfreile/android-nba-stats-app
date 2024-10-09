@@ -8,9 +8,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.nba.playerDetail.composables.PlayerDetail
+import com.example.nba.ui.dimensions.Dimensions
 
 @Composable
 fun PlayerDetailScreen(playerId: Int, viewModel: PlayerDetailViewModel = hiltViewModel()) {
@@ -27,7 +27,7 @@ fun PlayerDetailScreen(playerId: Int, viewModel: PlayerDetailViewModel = hiltVie
         }
     } ?: run {
         CircularProgressIndicator(
-            modifier = Modifier.size(64.dp),
+            modifier = Modifier.size(Dimensions.circularProgressSize),
             color = MaterialTheme.colorScheme.primary,
             trackColor = MaterialTheme.colorScheme.secondary
         )

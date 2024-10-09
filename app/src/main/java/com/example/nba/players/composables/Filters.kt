@@ -20,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import com.example.nba.R
 import com.example.nba.ui.dimensions.Dimensions
 import com.example.nba.utils.getTeamAbbreviationList

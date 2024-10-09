@@ -38,7 +38,8 @@ fun PlayerDetail(player: Player, isFavorite: Boolean, onToggleFavorite: () -> Un
                     Text(
                         text = "${player.playerName} (${player.position})",
                         style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = MaterialTheme.colorScheme.onBackground,
+                        modifier = Modifier.weight(1f)
                     )
                     ToggleFavoriteButton(isFavorite = isFavorite, onToggleFavorite = onToggleFavorite)
                 }

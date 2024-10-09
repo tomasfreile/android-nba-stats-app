@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
@@ -14,6 +13,7 @@ import com.example.nba.favourites.Favourites
 import com.example.nba.home.Home
 import com.example.nba.playerDetail.PlayerDetailScreen
 import com.example.nba.players.Players
+import com.example.nba.ui.dimensions.Dimensions
 
 @Composable
 fun NavHostComposable(innerPadding: PaddingValues, navController: NavHostController) {
@@ -23,7 +23,7 @@ fun NavHostComposable(innerPadding: PaddingValues, navController: NavHostControl
         modifier = Modifier
             .padding(innerPadding)
             .fillMaxSize()
-            .padding(horizontal = 10.dp)
+            .padding(horizontal = Dimensions.paddingMedium)
     ) {
         composable(Screen.Home.name) {
             Home(navController)
