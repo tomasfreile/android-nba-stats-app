@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="base_url">http://b8c40s8.143.198.70.30.sslip.io/api/</string>
-    <string name="BOS_URL">https://cdn.nba.com/logos/nba/1610612738/global/L/logo.svg</string>
-    <string name="BKN_URL">https://cdn.nba.com/logos/nba/1610612751/global/L/logo.svg</string>
-    <string name="NYC_URL">https://cdn.nba.com/logos/nba/1610612752/global/L/logo.svg</string>
-    <string name="PHI_URL">https://cdn.nba.com/logos/nba/1610612755/global/L/logo.svg</string>
-    <string name="TOR_URL">https://cdn.nba.com/logos/nba/1610612761/global/L/logo.svg</string>
-    <string name="CHI_URL">https://cdn.nba.com/logos/nba/1610612741/global/L/logo.svg</string>
-    <string name="CLE_URL">https://cdn.nba.com/logos/nba/1610612739/global/L/logo.svg</string>
-    <string name="DET_URL">https://cdn.nba.com/logos/nba/1610612765/global/L/logo.svg</string>
-    <string name="IND_URL">https://cdn.nba.com/logos/nba/1610612754/global/L/logo.svg</string>
-    <string name="MIL_URL">https://cdn.nba.com/logos/nba/1610612749/global/L/logo.svg</string>
-    <string name="MIA_URL">https://cdn.nba.com/logos/nba/1610612748/global/L/logo.svg</string>
-    <string name="ORL_URL">https://cdn.nba.com/logos/nba/1610612753/global/L/logo.svg</string>
-    <string name="WAS_URL">https://cdn.nba.com/logos/nba/1610612764/global/L/logo.svg</string>
-    <string name="ATL_URL">https://cdn.nba.com/logos/nba/1610612737/global/L/logo.svg</string>
-    <string name="CHA_URL">https://cdn.nba.com/logos/nba/1610612766/global/L/logo.svg</string>
-    <string name="DEN_URL">https://cdn.nba.com/logos/nba/1610612743/global/L/logo.svg</string>
-    <string name="MIN_URL">https://cdn.nba.com/logos/nba/1610612750/global/L/logo.svg</string>
-    <string name="OKC_URL">https://cdn.nba.com/logos/nba/1610612760/global/L/logo.svg</string>
-    <string name="POR_URL">https://cdn.nba.com/logos/nba/1610612757/global/L/logo.svg</string>
-    <string name="UTA_URL">https://cdn.nba.com/logos/nba/1610612762/global/L/logo.svg</string>
-    <string name="GSW_URL">https://cdn.nba.com/logos/nba/1610612744/global/L/logo.svg</string>
-    <string name="LAC_URL">https://cdn.nba.com/logos/nba/1610612746/global/L/logo.svg</string>
-    <string name="LAL_URL">https://cdn.nba.com/logos/nba/1610612747/global/L/logo.svg</string>
-    <string name="PHX_URL">https://cdn.nba.com/logos/nba/1610612756/global/L/logo.svg</string>
-    <string name="SAC_URL">https://cdn.nba.com/logos/nba/1610612758/global/L/logo.svg</string>
-    <string name="DAL_URL">https://cdn.nba.com/logos/nba/1610612742/global/L/logo.svg</string>
-    <string name="HOU_URL">https://cdn.nba.com/logos/nba/1610612745/global/L/logo.svg</string>
-    <string name="MEM_URL">https://cdn.nba.com/logos/nba/1610612763/global/L/logo.svg</string>
-    <string name="NOP_URL">https://cdn.nba.com/logos/nba/1610612740/global/L/logo.svg</string>
-    <string name="SAS_URL">https://cdn.nba.com/logos/nba/1610612759/global/L/logo.svg</string>
-    <string name="default_logo">https://cdn.nba.com/logos/leagues/logo-nba-logoman.svg</string>
+    <string name="base_url" translatable="false">http://b8c40s8.143.198.70.30.sslip.io/api/</string>
+    <string name="BOS_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612738/global/L/logo.svg</string>
+    <string name="BKN_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612751/global/L/logo.svg</string>
+    <string name="NYC_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612752/global/L/logo.svg</string>
+    <string name="PHI_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612755/global/L/logo.svg</string>
+    <string name="TOR_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612761/global/L/logo.svg</string>
+    <string name="CHI_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612741/global/L/logo.svg</string>
+    <string name="CLE_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612739/global/L/logo.svg</string>
+    <string name="DET_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612765/global/L/logo.svg</string>
+    <string name="IND_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612754/global/L/logo.svg</string>
+    <string name="MIL_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612749/global/L/logo.svg</string>
+    <string name="MIA_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612748/global/L/logo.svg</string>
+    <string name="ORL_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612753/global/L/logo.svg</string>
+    <string name="WAS_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612764/global/L/logo.svg</string>
+    <string name="ATL_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612737/global/L/logo.svg</string>
+    <string name="CHA_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612766/global/L/logo.svg</string>
+    <string name="DEN_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612743/global/L/logo.svg</string>
+    <string name="MIN_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612750/global/L/logo.svg</string>
+    <string name="OKC_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612760/global/L/logo.svg</string>
+    <string name="POR_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612757/global/L/logo.svg</string>
+    <string name="UTA_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612762/global/L/logo.svg</string>
+    <string name="GSW_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612744/global/L/logo.svg</string>
+    <string name="LAC_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612746/global/L/logo.svg</string>
+    <string name="LAL_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612747/global/L/logo.svg</string>
+    <string name="PHX_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612756/global/L/logo.svg</string>
+    <string name="SAC_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612758/global/L/logo.svg</string>
+    <string name="DAL_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612742/global/L/logo.svg</string>
+    <string name="HOU_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612745/global/L/logo.svg</string>
+    <string name="MEM_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612763/global/L/logo.svg</string>
+    <string name="NOP_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612740/global/L/logo.svg</string>
+    <string name="SAS_URL" translatable="false">https://cdn.nba.com/logos/nba/1610612759/global/L/logo.svg</string>
+    <string name="default_logo" translatable="false">https://cdn.nba.com/logos/leagues/logo-nba-logoman.svg</string>
 
 
 

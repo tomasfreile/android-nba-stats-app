@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name" translatable="false">NBA</string>
+    <string name="welcome_message">¡Bienvenidos a Estadísticas de la NBA!</string>
+    <string name="app_description">Explora las estadísticas de los jugadores, realiza un seguimiento de tus jugadores favoritos y profundiza en las estadísticas de la temporada.</string>
+    <string name="retry">Reintentar</string>
+    <string name="retry_load_ranking">No se pueden cargar los jugadores, inténtalo de nuevo más tarde.</string>
+    <string name="start_year" translatable="false">1993</string>
+    <string name="end_year" translatable="false">2024</string>
+    <string name="no_favourites">No tienes ningún jugador favorito.</string>
+    <string name="toast_error_getting_players">Error al conseguir jugadores</string>
+    <string name="toast_added_to_favourites">Jugador agregado a favoritos</string>
+    <string name="toast_removed_from_favourites">Jugador eliminado de favoritos</string>
+
+    <string name="age_label">Edad</string>
+    <string name="team_label">Equipo</string>
+    <string name="shooting_stats_title">Tiro</string>
+    <string name="field_goals_label">Puntos de campo</string>
+    <string name="field_goal_percentage_label">% de tiros de campo</string>
+    <string name="three_pt_label">Triples</string>
+    <string name="three_pt_percentage_label">% triples</string>
+    <string name="two_pt_label">Dobles</string>
+    <string name="two_pt_percentage_label">% dobles</string>
+    <string name="effective_fg_percentage_label">% de puntos de campo efectivo</string>
+    <string name="free_throws_label">Tiros libres</string>
+    <string name="free_throw_percentage_label">% tiros lbres</string>
+    <string name="rebounding_title">Rebotes</string>
+    <string name="offensive_rebounds_label">Rebotes ofensivos</string>
+    <string name="defensive_rebounds_label">Rebotes defensivos</string>
+    <string name="total_rebounds_label">Rebotes totales</string>
+    <string name="other_stats_title">Otras estadísticas</string>
+    <string name="assists_label">Asistencias</string>
+    <string name="steals_label">Robos</string>
+    <string name="blocks_label">Bloqueos</string>
+    <string name="turnovers_label">Pérdidas</string>
+    <string name="personal_fouls_label">Faltas personales</string>
+    <string name="points_label">Puntos</string>
+
+    <string name="search_bar_placeholder">Buscar jugadores…</string>
+    <string name="season_label">"Temporada: "</string>
+    <string name="minus" translatable="false">-</string>
+    <string name="filter_by_team">Filtrar por equipo</string>
+    <string name="_2024" translatable="false">2024</string>
+</resources>

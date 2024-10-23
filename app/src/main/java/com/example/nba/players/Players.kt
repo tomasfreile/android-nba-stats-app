@@ -33,6 +33,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -103,7 +104,11 @@ fun Players(navController: NavHostController) {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         IconButton(onClick = { coroutineScope.launch { drawerState.open() } }) {
-                            Icon(Icons.Default.Menu, contentDescription = "Open filters")
+                            Icon(
+                                painter = painterResource(id = R.drawable.filter_svgrepo_com),
+                                contentDescription = stringResource(id = R.string.filter_by_team),
+                                modifier = Modifier.size(Dimensions.filterIconSize),
+                            )
                         }
 
                         SearchBar(searchText = searchText, onSearchTextChange = {

@@ -1,47 +1,16 @@
 <resources>
-    <string name="app_name">NBA</string>
+    <string name="app_name" translatable="false">NBA</string>
     <string name="welcome_message">Welcome to NBA Stats!</string>
     <string name="app_description"> Explore player statistics, keep track of your favorite players, and dive deep into season stats</string>
     <string name="retry">Retry</string>
     <string name="retry_load_ranking">Can\'t load players, try again later</string>
-    <string name="start_year">1993</string>
-    <string name="end_year">2024</string>
-    <string name="Atlanta">ATL</string>
-    <string name="Boston">BOS</string>
-    <string name="Brooklyn">BRK</string>
-    <string name="Charlotte">CHO</string>
-    <string name="Chicago">CHI</string>
-    <string name="Cleveland">CLE</string>
-    <string name="Dallas">DAL</string>
-    <string name="Denver">DEN</string>
-    <string name="Detroit">DET</string>
-    <string name="GoldenState">GSW</string>
-    <string name="Houston">HOU</string>
-    <string name="Indiana">IND</string>
-    <string name="LAClippers">LAC</string>
-    <string name="LALakers">LAL</string>
-    <string name="Memphis">MEM</string>
-    <string name="Miami">MIA</string>
-    <string name="Milwaukee">MIL</string>
-    <string name="Minnesota">MIN</string>
-    <string name="NewOrleans">NOP</string>
-    <string name="NewYork">NYK</string>
-    <string name="OklahomaCity">OKC</string>
-    <string name="Orlando">ORL</string>
-    <string name="Philadelphia">PHI</string>
-    <string name="Phoenix">PHO</string>
-    <string name="Portland">POR</string>
-    <string name="Sacramento">SAC</string>
-    <string name="SanAntonio">SAS</string>
-    <string name="Toronto">TOR</string>
-    <string name="Utah">UTA</string>
-    <string name="Washington">WAS</string>
+    <string name="start_year" translatable="false">1993</string>
+    <string name="end_year" translatable="false">2024</string>
     <string name="no_favourites">You don\'t have any favourite players</string>
     <string name="toast_error_getting_players">Error getting players</string>
     <string name="toast_added_to_favourites">Player added to favourites</string>
     <string name="toast_removed_from_favourites">Player removed from favourites</string>
 
-    <!-- Strings for PlayerDetail composable -->
     <string name="age_label">Age</string>
     <string name="team_label">Team</string>
     <string name="shooting_stats_title">Shooting Stats</string>
@@ -66,9 +35,16 @@
     <string name="personal_fouls_label">Personal Fouls</string>
     <string name="points_label">Points</string>
 
-    <string name="search_bar_placeholder">Search players...</string>
+    <string name="search_bar_placeholder">Search players…</string>
     <string name="season_label">"Season: "</string>
-    <string name="minus">-</string>
+    <string name="minus" translatable="false">-</string>
     <string name="filter_by_team">Filter by Team</string>
-    <string name="_2024">2024</string>
+    <string name="_2024" translatable="false">2024</string>
+    <string name="no_biometric_credentials_enrolled">No biometric credentials enrolled</string>
+    <string name="biometric_hardware_is_unavailable">Biometric hardware is unavailable</string>
+    <string name="biometric_authentication_not_available">Biometric authentication not available</string>
+    <string name="there_was_an_error_in_the_authentication">There was an error in the authentication</string>
+    <string name="the_authentication_failed_try_again">The authentication failed, try again</string>
+    <string name="please_try_again">Please try again.</string>
+    <string name="authentication_failed">Authentication Failed</string>
 </resources>

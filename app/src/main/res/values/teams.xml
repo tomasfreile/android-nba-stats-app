@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Atlanta" translatable="false">ATL</string>
+    <string name="Boston" translatable="false">BOS</string>
+    <string name="Brooklyn" translatable="false">BRK</string>
+    <string name="Charlotte" translatable="false">CHO</string>
+    <string name="Chicago" translatable="false">CHI</string>
+    <string name="Cleveland" translatable="false">CLE</string>
+    <string name="Dallas" translatable="false">DAL</string>
+    <string name="Denver" translatable="false">DEN</string>
+    <string name="Detroit" translatable="false">DET</string>
+    <string name="GoldenState" translatable="false">GSW</string>
+    <string name="Houston" translatable="false">HOU</string>
+    <string name="Indiana" translatable="false">IND</string>
+    <string name="LAClippers" translatable="false">LAC</string>
+    <string name="LALakers" translatable="false">LAL</string>
+    <string name="Memphis" translatable="false">MEM</string>
+    <string name="Miami" translatable="false">MIA</string>
+    <string name="Milwaukee" translatable="false">MIL</string>
+    <string name="Minnesota" translatable="false">MIN</string>
+    <string name="NewOrleans" translatable="false">NOP</string>
+    <string name="NewYork" translatable="false">NYK</string>
+    <string name="OklahomaCity" translatable="false">OKC</string>
+    <string name="Orlando" translatable="false">ORL</string>
+    <string name="Philadelphia" translatable="false">PHI</string>
+    <string name="Phoenix" translatable="false">PHO</string>
+    <string name="Portland" translatable="false">POR</string>
+    <string name="Sacramento" translatable="false">SAC</string>
+    <string name="SanAntonio" translatable="false">SAS</string>
+    <string name="Toronto" translatable="false">TOR</string>
+    <string name="Utah" translatable="false">UTA</string>
+    <string name="Washington" translatable="false">WAS</string>
+</resources>

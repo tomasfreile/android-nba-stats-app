@@ -1,6 +1,7 @@
 package com.example.nba.ui.dimensions
 
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 object Dimensions {
         val paddingXSmall = 4.dp
@@ -18,5 +19,10 @@ object Dimensions {
         val statCardBorderRadius = 8.dp
         val statCardBorder = 1.dp
         val logoSize = 80.dp
+        val fontSmall = 12.sp
+        val fontMedium = 16.sp
+        val fontLarge = 20.sp
+        val fontXLarge = 24.sp
+        val filterIconSize = 24.dp
 }
 
