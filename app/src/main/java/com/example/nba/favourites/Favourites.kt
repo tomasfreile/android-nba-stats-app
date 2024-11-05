@@ -2,6 +2,7 @@ package com.example.nba.favourites
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -19,6 +20,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.nba.R
 import com.example.nba.favourites.composables.PlayerCardFavourite
+import com.example.nba.players.composables.SearchBar
 import com.example.nba.ui.dimensions.Dimensions
 
 
@@ -27,29 +29,35 @@ fun Favourites(navController: NavHostController) {
     val viewModel = hiltViewModel<FavouritesViewModel>()
 
     val playerList by viewModel.favouritePlayers.collectAsState()
+    val searchText by viewModel.searchText.collectAsState()
 
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background,
     ) {
-        if (playerList.isEmpty()) {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = stringResource(id = R.string.no_favourites),
-                    fontWeight = FontWeight.Bold,
-                    )
-            }
-        } else {
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(Dimensions.paddingSmall),
+        Column(modifier = Modifier.fillMaxSize()) {
+            SearchBar(searchText = searchText, onSearchTextChange = {
+                viewModel.onSearchTextChange(it)
+            })
+            if (playerList.isEmpty()) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
                 ) {
-                items(playerList) { player ->
-                    PlayerCardFavourite(player = player, onClick = {
-                        navController.navigate("playerDetail/${player.id}")
-                    })
+                    Text(
+                        text = stringResource(id = R.string.no_favourites),
+                        fontWeight = FontWeight.Bold,
+                    )
+                }
+            } else {
+                LazyColumn(
+                    verticalArrangement = Arrangement.spacedBy(Dimensions.paddingSmall),
+                ) {
+                    items(playerList) { player ->
+                        PlayerCardFavourite(player = player, onClick = {
+                            navController.navigate("playerDetail/${player.id}")
+                        })
+                    }
                 }
             }
         }

@@ -23,8 +23,21 @@ class FavouritesViewModel @Inject constructor(
     private val apiService: ApiServiceImpl,
 ) : ViewModel() {
 
+    private val _searchText = MutableStateFlow("")
+    val searchText: StateFlow<String> = _searchText.asStateFlow()
+
     private val _favouritePlayers = MutableStateFlow(listOf<Player>())
-    val favouritePlayers: StateFlow<List<Player>> = _favouritePlayers.asStateFlow()
+    val favouritePlayers: StateFlow<List<Player>> = searchText
+        .combine(_favouritePlayers) { text, players ->
+            players.filter { player ->
+                player.playerName.contains(text, ignoreCase = true)
+            }
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = _favouritePlayers.value
+        )
 
 
     private val appDatabase = AppDatabase.getInstance(context)
@@ -39,5 +52,9 @@ class FavouritesViewModel @Inject constructor(
             val players = favouritePlayers.mapNotNull { appDatabase.playerDao().getPlayerById(it.playerId) }
             _favouritePlayers.value = players
         }
+    }
+
+    fun onSearchTextChange(text: String) {
+        _searchText.value = text
     }
 }
